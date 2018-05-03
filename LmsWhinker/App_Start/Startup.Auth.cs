@@ -54,9 +54,9 @@ namespace LmsWhinker
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "387310425075992",
+               appSecret: "3757de050c2b9c1306667b124e518010");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

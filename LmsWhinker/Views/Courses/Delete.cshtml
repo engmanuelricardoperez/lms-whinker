@@ -1,0 +1,120 @@
+﻿@model LmsWhinker.Context.course
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.content1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.featuredImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.featuredImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.requirements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.requirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateChange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userChange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typeCourse.userCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeCourse.userCreation)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

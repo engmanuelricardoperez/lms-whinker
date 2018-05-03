@@ -1,0 +1,1 @@
+﻿select * from [aspnet-LmsWhinker-20180416055335].dbo.AspNetUsers
