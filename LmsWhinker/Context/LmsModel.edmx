@@ -4,51 +4,44 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LmsWhinkerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="LmsWhinkerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008">
         <EntityType Name="content">
           <Key>
             <PropertyRef Name="idContent" />
           </Key>
-          <Property Name="idContent" Type="int" Nullable="false" />
-          <Property Name="contentCourse" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="dateCreation" Type="date" />
-          <Property Name="userCreation" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="dateChange" Type="date" Nullable="false" />
-          <Property Name="userChange" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idContent" Nullable="false" Type="int" />
+          <Property Name="idCourse" Nullable="false" Type="int" />
+          <Property Name="contentCourse" Nullable="false" MaxLength="500" Type="varchar" />
+          <Property Name="dateCreation" Nullable="false" Type="date" />
+          <Property Name="userCreation" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="dateChange" Nullable="false" Type="date" />
+          <Property Name="userChange" Nullable="false" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="course">
           <Key>
             <PropertyRef Name="idCourse" />
           </Key>
-          <Property Name="idCourse" Type="int" Nullable="false" />
-          <Property Name="idTypeCourse" Type="int" Nullable="false" />
-          <Property Name="content1" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="content2" Type="varchar" MaxLength="50" />
+          <Property Name="idCourse" Nullable="false" Type="int" />
+          <Property Name="idTypeCourse" Nullable="false" Type="int" />
+          <Property Name="content1" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="content2" MaxLength="50" Type="varchar" />
           <Property Name="creditFee" Type="int" />
-          <Property Name="featuredImage" Type="varchar" MaxLength="500" />
-          <Property Name="requirements" Type="varchar" MaxLength="100" />
-          <Property Name="status" Type="bit" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="dateCreation" Type="date" Nullable="false" />
-          <Property Name="userCreation" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="dateChange" Type="date" Nullable="false" />
-          <Property Name="userChange" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="courseContent">
-          <Key>
-            <PropertyRef Name="idCourseContent" />
-          </Key>
-          <Property Name="idCourseContent" Type="int" Nullable="false" />
-          <Property Name="idCourse" Type="int" />
-          <Property Name="idContent" Type="int" />
+          <Property Name="featuredImage" MaxLength="500" Type="varchar" />
+          <Property Name="requirements" MaxLength="100" Type="varchar" />
+          <Property Name="status" Nullable="false" Type="bit" />
+          <Property Name="title" Nullable="false" MaxLength="100" Type="varchar" />
+          <Property Name="dateCreation" Nullable="false" Type="date" />
+          <Property Name="userCreation" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="dateChange" Nullable="false" Type="date" />
+          <Property Name="userChange" Nullable="false" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="principal_id" Nullable="false" Type="int" />
+          <Property Name="diagram_id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
@@ -56,16 +49,28 @@
           <Key>
             <PropertyRef Name="idTypeCourse" />
           </Key>
-          <Property Name="idTypeCourse" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="dateCreation" Type="date" Nullable="false" />
-          <Property Name="userCreation" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="dateChange" Type="date" Nullable="false" />
-          <Property Name="userChange" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idTypeCourse" Nullable="false" Type="int" />
+          <Property Name="Name" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="dateCreation" Nullable="false" Type="date" />
+          <Property Name="userCreation" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="dateChange" Nullable="false" Type="date" />
+          <Property Name="userChange" Nullable="false" MaxLength="50" Type="varchar" />
         </EntityType>
+        <Association Name="FK_content_course">
+          <End Type="Self.course" Multiplicity="1" Role="course" />
+          <End Type="Self.content" Multiplicity="*" Role="content" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="idCourse" />
+            </Principal>
+            <Dependent Role="content">
+              <PropertyRef Name="idCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_course_typeCourse">
-          <End Role="typeCourse" Type="Self.typeCourse" Multiplicity="1" />
-          <End Role="course" Type="Self.course" Multiplicity="*" />
+          <End Type="Self.typeCourse" Multiplicity="1" Role="typeCourse" />
+          <End Type="Self.course" Multiplicity="*" Role="course" />
           <ReferentialConstraint>
             <Principal Role="typeCourse">
               <PropertyRef Name="idTypeCourse" />
@@ -75,49 +80,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_courseContent_content">
-          <End Role="content" Type="Self.content" Multiplicity="0..1" />
-          <End Role="courseContent" Type="Self.courseContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="content">
-              <PropertyRef Name="idContent" />
-            </Principal>
-            <Dependent Role="courseContent">
-              <PropertyRef Name="idContent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_courseContent_course">
-          <End Role="course" Type="Self.course" Multiplicity="0..1" />
-          <End Role="courseContent" Type="Self.courseContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="course">
-              <PropertyRef Name="idCourse" />
-            </Principal>
-            <Dependent Role="courseContent">
-              <PropertyRef Name="idCourse" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="LmsWhinkerModelStoreContainer">
           <EntitySet Name="content" EntityType="Self.content" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="courseContent" EntityType="Self.courseContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="typeCourse" EntityType="Self.typeCourse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_content_course" Association="Self.FK_content_course">
+            <End EntitySet="course" Role="course" />
+            <End EntitySet="content" Role="content" />
+          </AssociationSet>
           <AssociationSet Name="FK_course_typeCourse" Association="Self.FK_course_typeCourse">
-            <End Role="typeCourse" EntitySet="typeCourse" />
-            <End Role="course" EntitySet="course" />
+            <End EntitySet="typeCourse" Role="typeCourse" />
+            <End EntitySet="course" Role="course" />
           </AssociationSet>
-          <AssociationSet Name="FK_courseContent_content" Association="Self.FK_courseContent_content">
-            <End Role="content" EntitySet="content" />
-            <End Role="courseContent" EntitySet="courseContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_courseContent_course" Association="Self.FK_courseContent_course">
-            <End Role="course" EntitySet="course" />
-            <End Role="courseContent" EntitySet="courseContent" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -128,11 +104,12 @@
           </Key>
           <Property Name="idContent" Type="Int32" Nullable="false" />
           <Property Name="contentCourse" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="dateCreation" Type="DateTime" Precision="0" />
+          <Property Name="dateCreation" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="userCreation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dateChange" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="userChange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="courseContents" Relationship="Self.FK_courseContent_content" FromRole="content" ToRole="courseContent" />
+          <Property Name="idCourse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="course" Relationship="LmsWhinkerModel.FK_content_course" FromRole="content" ToRole="course" />
         </EntityType>
         <EntityType Name="course">
           <Key>
@@ -152,17 +129,7 @@
           <Property Name="dateChange" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="userChange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="typeCourse" Relationship="Self.FK_course_typeCourse" FromRole="course" ToRole="typeCourse" />
-          <NavigationProperty Name="courseContents" Relationship="Self.FK_courseContent_course" FromRole="course" ToRole="courseContent" />
-        </EntityType>
-        <EntityType Name="courseContent">
-          <Key>
-            <PropertyRef Name="idCourseContent" />
-          </Key>
-          <Property Name="idCourseContent" Type="Int32" Nullable="false" />
-          <Property Name="idCourse" Type="Int32" />
-          <Property Name="idContent" Type="Int32" />
-          <NavigationProperty Name="content" Relationship="Self.FK_courseContent_content" FromRole="courseContent" ToRole="content" />
-          <NavigationProperty Name="course" Relationship="Self.FK_courseContent_course" FromRole="courseContent" ToRole="course" />
+          <NavigationProperty Name="contents" Relationship="LmsWhinkerModel.FK_content_course" FromRole="course" ToRole="content" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -179,25 +146,13 @@
             <PropertyRef Name="idTypeCourse" />
           </Key>
           <Property Name="idTypeCourse" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="userCreation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dateChange" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="userChange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="courses" Relationship="Self.FK_course_typeCourse" FromRole="typeCourse" ToRole="course" />
         </EntityType>
-        <Association Name="FK_courseContent_content">
-          <End Role="content" Type="Self.content" Multiplicity="0..1" />
-          <End Role="courseContent" Type="Self.courseContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="content">
-              <PropertyRef Name="idContent" />
-            </Principal>
-            <Dependent Role="courseContent">
-              <PropertyRef Name="idContent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_course_typeCourse">
           <End Role="typeCourse" Type="Self.typeCourse" Multiplicity="1" />
           <End Role="course" Type="Self.course" Multiplicity="*" />
@@ -210,37 +165,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_courseContent_course">
-          <End Role="course" Type="Self.course" Multiplicity="0..1" />
-          <End Role="courseContent" Type="Self.courseContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="course">
-              <PropertyRef Name="idCourse" />
-            </Principal>
-            <Dependent Role="courseContent">
-              <PropertyRef Name="idCourse" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="LmsWhinkerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="contents" EntityType="Self.content" />
           <EntitySet Name="courses" EntityType="Self.course" />
-          <EntitySet Name="courseContents" EntityType="Self.courseContent" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="typeCourses" EntityType="Self.typeCourse" />
-          <AssociationSet Name="FK_courseContent_content" Association="Self.FK_courseContent_content">
-            <End Role="content" EntitySet="contents" />
-            <End Role="courseContent" EntitySet="courseContents" />
-          </AssociationSet>
           <AssociationSet Name="FK_course_typeCourse" Association="Self.FK_course_typeCourse">
             <End Role="typeCourse" EntitySet="typeCourses" />
             <End Role="course" EntitySet="courses" />
           </AssociationSet>
-          <AssociationSet Name="FK_courseContent_course" Association="Self.FK_courseContent_course">
+          <AssociationSet Name="FK_content_course" Association="LmsWhinkerModel.FK_content_course">
             <End Role="course" EntitySet="courses" />
-            <End Role="courseContent" EntitySet="courseContents" />
+            <End Role="content" EntitySet="contents" />
           </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_content_course">
+          <End Type="LmsWhinkerModel.course" Role="course" Multiplicity="1" />
+          <End Type="LmsWhinkerModel.content" Role="content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="idCourse" />
+            </Principal>
+            <Dependent Role="content">
+              <PropertyRef Name="idCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -250,6 +200,7 @@
           <EntitySetMapping Name="contents">
             <EntityTypeMapping TypeName="LmsWhinkerModel.content">
               <MappingFragment StoreEntitySet="content">
+                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
                 <ScalarProperty Name="idContent" ColumnName="idContent" />
                 <ScalarProperty Name="contentCourse" ColumnName="contentCourse" />
                 <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
@@ -275,15 +226,6 @@
                 <ScalarProperty Name="userCreation" ColumnName="userCreation" />
                 <ScalarProperty Name="dateChange" ColumnName="dateChange" />
                 <ScalarProperty Name="userChange" ColumnName="userChange" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="courseContents">
-            <EntityTypeMapping TypeName="LmsWhinkerModel.courseContent">
-              <MappingFragment StoreEntitySet="courseContent">
-                <ScalarProperty Name="idCourseContent" ColumnName="idCourseContent" />
-                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
-                <ScalarProperty Name="idContent" ColumnName="idContent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

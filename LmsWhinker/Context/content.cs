@@ -14,20 +14,14 @@ namespace LmsWhinker.Context
     
     public partial class content
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public content()
-        {
-            this.courseContents = new HashSet<courseContent>();
-        }
-    
         public int idContent { get; set; }
         public string contentCourse { get; set; }
-        public Nullable<System.DateTime> dateCreation { get; set; }
+        public System.DateTime dateCreation { get; set; }
         public string userCreation { get; set; }
         public System.DateTime dateChange { get; set; }
         public string userChange { get; set; }
+        public int idCourse { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<courseContent> courseContents { get; set; }
+        public virtual course course { get; set; }
     }
 }

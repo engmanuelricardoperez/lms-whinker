@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LmsWhinker.Context.content>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.contentCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateChange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userChange)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.contentCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateChange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userChange)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idContent }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idContent }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idContent })
+        </td>
+    </tr>
+}
+
+</table>

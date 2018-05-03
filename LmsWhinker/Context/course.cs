@@ -17,7 +17,7 @@ namespace LmsWhinker.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public course()
         {
-            this.courseContents = new HashSet<courseContent>();
+            this.contents = new HashSet<content>();
         }
     
         public int idCourse { get; set; }
@@ -36,6 +36,6 @@ namespace LmsWhinker.Context
     
         public virtual typeCourse typeCourse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<courseContent> courseContents { get; set; }
+        public virtual ICollection<content> contents { get; set; }
     }
 }

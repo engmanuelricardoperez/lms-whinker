@@ -1,0 +1,64 @@
+﻿@model LmsWhinker.Context.content
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>content</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.contentCourse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contentCourse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateChange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userChange)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

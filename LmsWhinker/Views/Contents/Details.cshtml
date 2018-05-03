@@ -1,0 +1,58 @@
+﻿@model LmsWhinker.Context.content
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>content</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.contentCourse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contentCourse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateChange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userChange)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idContent }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

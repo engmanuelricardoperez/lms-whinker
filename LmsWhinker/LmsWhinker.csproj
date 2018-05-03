@@ -211,9 +211,6 @@
     <Compile Include="Context\course.cs">
       <DependentUpon>LmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\courseContent.cs">
-      <DependentUpon>LmsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Context\LmsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -236,6 +233,7 @@
       <DependentUpon>LmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -330,6 +328,11 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Contents\Create.cshtml" />
+    <Content Include="Views\Contents\Delete.cshtml" />
+    <Content Include="Views\Contents\Details.cshtml" />
+    <Content Include="Views\Contents\Edit.cshtml" />
+    <Content Include="Views\Contents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

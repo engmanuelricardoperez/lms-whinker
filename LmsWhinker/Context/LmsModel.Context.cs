@@ -27,7 +27,6 @@ namespace LmsWhinker.Context
     
         public virtual DbSet<content> contents { get; set; }
         public virtual DbSet<course> courses { get; set; }
-        public virtual DbSet<courseContent> courseContents { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<typeCourse> typeCourses { get; set; }
     }
