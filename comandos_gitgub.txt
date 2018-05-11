@@ -1,1 +1,1 @@
-git clone git://github.com/schacon/grit.git mygrit
+git clone https://github.com/engmanuelricardoperez/lms-whinker.git
